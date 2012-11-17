@@ -1,0 +1,1796 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <style>*{margin:0px; padding:0px;} html,body {overflow:hidden;}body{background:white;}</style>
+    <script type="text/javascript" src="index9842_data/materiel.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var plid = "taibao110629";
+var WRAPPER_BG_PIC = "984bg2.jpg";
+var SUBMIT_BTN_BG_NORMAL = "";
+var SUBMIT_BTN_BG_HOVER = "";
+var SUBMIT_BTN_BG_ACTIVE = "";
+var ERRGIF = "http://eiv.baidu.com/mapm2/test/pingan/100824_xedk_01/err.gif";
+var ARROWGIF = "http://eiv.baidu.com/mapm2/test/pingan/100824_xedk_01/arrow.png";
+var FORMACTION = "http://www.cpic.com.cn/cpicweb/view/customer/personal/vehicle/SimpleChinaFastCalculationViewNew.jsp?utm_source=baidu&utm_medium=cpc&utm_term=baojia";
+var CHARSET = "utf-8";
+var METHOD = "post";
+var clkmk = "http://clkmk.baidu.com/clkmk-rcv/rcv?";
+var HIGHBG = "#fee994";
+var HIGHFG = "#000000";
+var ADLOG = ["0", "1", "2", "3", "4", "5", "6"];
+var licenseNo_BLOCKLIST = [];
+var mobile_BLOCKLIST = [];
+var email_BLOCKLIST = [];
+var VALUES = {
+    provinceCode: {
+        text: "所在省*",
+        value: "null"
+    },
+    cityCode: {
+        text: "所在市*",
+        value: "null"
+    },
+    license: {
+        text: "",
+        value: "车牌号码*"
+    },
+    mobile: {
+        text: "",
+        value: "手机号*"
+    },
+    email: {
+        text: "",
+        value: "您的邮箱"
+    }
+};
+var PROVINCECODE_DATA = [{
+    text: "所在省*",
+    value: "null"
+}];
+var CITYCODE_DATA = [{
+    text: "所在市*",
+    value: "null"
+}];
+var s_PROVINCECODE,
+s_CITYCODE,
+s_LICENSENO,
+s_MOBILE,
+s_EMAIL,
+licenseNo_hidden,
+s_radio1,
+s_radio2,
+s_radio3;
+var sForm,
+s_Error,
+s_ErrorBG;
+var ProvinceHolder = {},
+CityHolder = {};
+ProvinceHolder.provinces = [];
+var noValidate = [];
+function initHTML() {
+    o('<style type="text/css">');
+    o("	#wrapper{position:relative;width:10px;height:195px;background:url('" + WRAPPER_BG_PIC + "') no-repeat white;padding:2px 455px 0px 529px;font-size:12px;color:#333333;}");
+    o("	.soSelect { background-color: #fff; border: solid 1px #7F9DB9; position:relative; height: 20px; margin:0px; cursor: pointer; zoom:1;text-align:left;}");
+    o("	.soSelect .options {overflow-y:auto; overflow-x:hidden; background-color: #fff; border: solid 1px #7f9db9; left: -1px; position: absolute; top: 20px; z-index: 9999; margin: 0; padding: 0; list-style:none; }");
+    o("	.soSelect .options li a { color: #000; display: block; height: 18px; line-height: 18px; padding-left: 5px; text-decoration: none;}");
+    o("	.soSelect .options li a:hover { background: none repeat scroll 0 0 #36c; color: #fff; }");
+    o("	.soSelect .option_current { float: left; height: 20px; line-height: 20px; overflow: hidden; padding-left: 5px; white-space: nowrap;  z-index:20;}");
+    o("	.soSelect .option_arrow { float: right; height: 20px; overflow: hidden; width: 17px; }");
+    o("	.soSelect .option_arrow a { border: solid 1px #fff; cursor: default; display: block; height: 18px; text-align: center; white-space: nowrap; }");
+    o('	.soSelect .option_arrow a:hover .arrow { background: #F4F4F4 url("' + ARROWGIF + '") no-repeat scroll 0 -18px; cursor: pointer; }');
+    o('	.soSelect .option_arrow .arrow { background: transparent url("' + ARROWGIF + '") no-repeat scroll 0 0; display: block; height: 18px; outline:none; }');
+    o("	.formPage{width:446px;}");
+    o("	.successPage{}");
+    o("	table.formtab{margin:0px; border-spacing:0px; border-collapse:collapse; width:100%;}");
+    o("	table.formtab td{color: #666666;font-size:12px; padding:0px;height:32px; line-height:32px; vertical-align:middle;}");
+    o("	table.formtab .td-right{padding-left:10px;}");
+    o("	table.formtab .td-radio{height:10px;line-height:10px;}");
+    o("	select{border: 1px solid #8A8A8A;padding: 1px;margin: 0px; vertical-align:middle;}");
+    o("	input{border: 1px solid #8A8A8A;padding: 2px 1px;margin: 0px; vertical-align:middle;}");
+    o("	table.formtab .td-radio input{border: 0px solid #8A8A8A;padding: 0px;margin: 0px; vertical-align:middle;}");
+    o("    select.provinceCode_nor{color:black;}");
+    o("    select.provinceCode_def{color:black;}");
+    o("    select.cityCode_nor{color:black;}");
+    o("    select.cityCode_def{color:black;}");
+    o("    input.license_nor{color:black;}");
+    o("    input.license_def{color:black;}");
+    o("    input.mobile_nor{color:black;}");
+    o("    input.mobile_def{color:black;}");
+    o("    input.email_nor{color:black;}");
+    o("    input.email_def{color:black;}");
+    o('    .submitbtn{background:url('+SUBMIT_BTN_BG_NORMAL+') no-repeat; height:32px; width:104px; border:0px; padding:0px; cursor:pointer; margin:0px;}');
+    o('    .submitbtnHover{background:url('+SUBMIT_BTN_BG_HOVER+') no-repeat; height:32px; width:104px; border:0px; padding:0px; cursor:pointer; margin:0px;}');
+    o('    .submitbtnActive{background:url('+SUBMIT_BTN_BG_ACTIVE+') no-repeat; height:32px; width:104px; border:0px; padding:0px; cursor:pointer; margin:0px;}');
+    o('    .submitBtnCtner{height:32px; width:104px; position:absolute; top:44px; left:880px;}');
+    o('    .ec_inputerr{background:' + HIGHBG + ';color:' + HIGHFG + ';}');
+    o("	.ec_inputerr{background:" + HIGHBG + ";color:" + HIGHFG + ";}");
+    o("</style>");
+    o('<div id="wrapper">');
+    var a = '<div id="formPage" class="formPage"><iframe name="formSubmit" style="display:none"></iframe><form id="form' + plid + '" style="margin:0px; padding:0px;" target="_blank" method="' + METHOD + '" accept-charset="' + CHARSET + '" action="' + FORMACTION + '"><input type="hidden" name="source" value="baiduSource" /><input type="hidden" id="licenseNo_hidden" name="licenseNo" value="" /><table cellspacing="0" cellpadding="0" border="0" align="center" class="formtab"><col align="left" width="60" /><col align="left" width="150" /><tbody><tr><td align="left"><select id="provinceCode" name="provinceCode" style="font-size:14px; width:104px;"></select></td><td class="td-right" align="left"><select id="cityCode" name="cityCode" style="font-size:14px; width:104px;"></select></td><td align="right"><input type="text" id="license" value="车牌号码*" class="license_def" style="font-size:14px; width:100px;" autocomplete="off" maxlength=7 /></td><td class="td-right"  align="left"><input type="text" id="mobile" name="mobile" value="手机号*" class="mobile_def" style="font-size:14px; width:100px;" autocomplete="off" maxlength=11 /></td></tr><tr><td class="td-radio" align="left"><input type="radio" id="radio-1" name="clientType" value="100"/>新车未上牌</td><td class="td-radio td-right" align="left"><input type="radio" name="clientType" id="radio-2"  value="010"/>太保老客户</td><td align="left"><input type="text" id="email" name="email" value="您的邮箱" class="email_def" style="font-size:14px; width:100px;" autocomplete="off" /></td></tr><tr><td colspan="2"  class="td-radio" align="left"><input type="radio" name="clientType" id="radio-3" value="001"/>上年其他保险公司承保</td></td></tr></tbody></table><div id="submitBtnCtner" class="submitBtnCtner"><input type="submit" class="submitbtn" id="submitBtn" value="" /></div><div id="error' + plid + '" style="background: url(&quot;' + ERRGIF + '&quot;) no-repeat scroll 3px 4px rgb(255, 242, 242); border: 1px solid rgb(255, 191, 191); font-size: 12px; line-height: 16px; margin: 0px; padding: 2px 0px 2px 20px; position: absolute; left: 100px; visibility: hidden; z-index: 200; width:86px;"></div><iframe id="bg_of_error' + plid + '" src="javascript:false;" scrolling="no" frameborder="0" style="position:absolute; top:0px; left:0px; visibility: hidden;"></iframe></form></div><div id="successPage" class="successPage" style="display:none;">新内容</div>';
+    o(a);
+    o("</div>")
+}
+initHTML();
+function hasnovalidate(b) {
+    for (var a = 0; a < noValidate.length; a++) {
+        if (noValidate[a] == b) {
+            return false
+        }
+    }
+    return true
+}
+function Province(b, a) {
+    this["c"] = b;
+    this["n"] = a;
+    this["cs"] = []
+}
+function City(e, d, b, c, a) {
+    this["c"] = e;
+    this["n"] = d;
+    this["pc"] = b;
+    this["lp"] = c;
+    this["dc"] = a;
+    this["p"] = null
+}
+function initProvinceCity() {
+    var a = new Province("110000", "北京市");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("110100", "北京市", "100000", "京A", "20127");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("120000", "天津市");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("120100", "天津市", "300000", "津A", "20321");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("310000", "上海市");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("310100", "上海市", "200000", "沪A", "2022003");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("500000", "重庆市");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("500100", "重庆市", "400000", "渝A", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("830000", "深圳市");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("440001", "罗湖区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440002", "福田区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440004", "南山区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440005", "盐田区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440006", "宝安区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440007", "龙岗区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440008", "中心区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440009", "笋岗区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440010", "新闻区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440011", "景田区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440012", "彩田区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440013", "荔园区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440014", "福华区", "400000", "粤B", "21821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("440000", "广东省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("440100", "广州市", "510000", "粤A", "20435");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440200", "韶关市", "512000", "粤F", "20417");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440400", "珠海市", "519000", "粤C", "20415");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440500", "汕头市", "515000", "粤D", "2040905");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440600", "佛山市", "528000", "粤E", "24103");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440700", "江门市", "529000", "粤J", "24412");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440800", "湛江市", "524000", "粤G", "2040412");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("440900", "茂名市", "525000", "粤K", "2040608");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441200", "肇庆市", "526000", "粤H", "2041613");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441300", "惠州市", "516000", "粤L", "2041010");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441400", "梅州市", "514000", "粤M", "20443");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441500", "汕尾市", "516600", "粤N", "2044605");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441600", "河源市", "517000", "粤P", "2044505");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441700", "阳江市", "529500", "粤Q", "2041811");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441800", "清远市", "511500", "粤R", "2044011");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("441900", "东莞市", "527300", "粤W", "2044107");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("442000", "中山市", "528400", "粤T", "24320");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("445100", "潮州市", "515600", "粤U", "20442");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("445200", "揭阳市", "515500", "粤V", "20444");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("445300", "云浮市", "527300", "粤W", "2044107");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("320000", "江苏省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("320100", "南京市", "210000", "苏A", "2108904");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320200", "无锡市", "214000", "苏B", "2461203");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320300", "徐州市", "221000", "苏C", "2101478");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320400", "常州市", "213000", "苏D", "2101278");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320500", "苏州市", "215000", "苏E", "24528");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320600", "南通市", "226300", "苏F", "2101578");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320700", "连云港市", "222000", "苏G", "2101878");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320800", "淮安市", "223200", "苏H", "2101678");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("320900", "盐城市", "224000", "苏J", "2101778");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("321000", "扬州市", "225000", "苏K", "2101978");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("321100", "镇江市", "212000", "苏L", "21013");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("321200", "泰州市", "225300", "苏M", "2102078");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("321300", "宿迁市", "223800", "苏N", "2102178");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("330000", "浙江省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("330100", "杭州市", "310000", "浙A", "21209");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330200", "宁波市", "315000", "浙B", "22900");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330300", "温州市", "325000", "浙C", "24806");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330400", "嘉兴市", "314000", "浙F", "21216");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330500", "湖州市", "313000", "浙E", "21211");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330600", "绍兴市", "312000", "浙D", "2470708");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330700", "金华市", "321000", "浙G", "21212");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330800", "衢州市", "324000", "浙H", "21223");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("330900", "舟山市", "316000", "浙L", "21224");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("331000", "台州市", "317000", "浙J", "21214");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("331100", "丽水市", "323000", "浙K", "21215");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("370000", "山东省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("370100", "济南市", "250000", "鲁A", "2365701");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370200", "青岛市", "266000", "鲁B", "2113678");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370300", "淄博市", "255000", "鲁C", "2112678");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370400", "枣庄市", "277100", "鲁D", "2361905");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370500", "东营市", "257000", "鲁E", "2361312");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370600", "烟台市", "264000", "鲁Y", "2113178");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370700", "潍坊市", "261000", "鲁G", "2112578");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370800", "济宁市", "272100", "鲁H", "2363015");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("370900", "泰安市", "271000", "鲁J", "2361208");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371000", "威海市", "264200", "鲁K", "2112879");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371100", "日照市", "276800", "鲁L", "2111478");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371200", "莱芜市", "271100", "鲁S", "2361504");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371300", "临沂市", "", "鲁", "2113278");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371400", "德州市", "253000", "鲁N", "2361708");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371500", "聊城市", "252000", "鲁P", "2361808");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371600", "滨州市", "256600", "鲁M", "2362911");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("371700", "荷泽市", "274000", "鲁R", "2361606");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("420000", "湖北省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("420100", "武汉市", "430000", "鄂A", "2091301");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("420200", "黄石市", "435000", "鄂B", "20919");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("420300", "十堰市", "442000", "鄂C", "20921");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("420500", "宜昌市", "443000", "鄂E", "20917");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("420600", "襄樊市", "441000", "鄂F", "20916");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("420700", "鄂州市", "436000", "鄂G", "20901");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("420800", "荆门市", "434500", "鄂H", "20922");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("420900", "孝感市", "432100", "鄂K", "20906");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("421000", "荆州市", "434000", "鄂D", "20918");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("421100", "黄冈市", "436100", "鄂J", "20904");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("421200", "咸宁市", "437000", "鄂L", "20953");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("421300", "随州市", "441300", "鄂S", "20907");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("422800", "恩施土家族苗族自治州", "437600", "鄂Q", "20908");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("210000", "辽宁省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("210100", "沈阳市", "110000", "辽A", "20606");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210200", "大连市", "116000", "辽B", "20712");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210300", "鞍山市", "114000", "辽C", "20619");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210400", "抚顺市", "113000", "辽D", "20622");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210500", "本溪市", "117000", "辽E", "20623");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210600", "丹东市", "118000", "辽F", "20618");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210700", "锦州市", "121000", "辽G", "20614");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210800", "营口市", "115000", "辽H", "20617");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("210900", "阜新市", "123000", "辽J", "20616");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("211000", "辽阳市", "111000", "辽K", "20615");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("211100", "盘锦市", "124000", "辽L", "20621");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("211200", "铁岭市", "112000", "辽M", "20624");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("211300", "朝阳市", "122000", "辽N", "20626");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("211400", "葫芦岛市", "121500", "辽P", "20620");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("510000", "四川省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("510100", "成都市", "610000", "川A", "2269302");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("510300", "自贡市", "643000", "川C", "2263332");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("510400", "攀枝花市", "617000", "川D", "2263533");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("510600", "德阳市", "618200", "川F", "2263037");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("510700", "绵阳市", "621000", "川B", "2263135");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("510800", "广元市", "641000", "川", "22634");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511000", "内江市", "641000", "川K", "22634");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511100", "乐山市", "614000", "川L", "2265035");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511300", "南充市", "637100", "川R", "2263603");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511400", "眉山市", "612100", "川Z", "2264002");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511500", "宜宾市", "644000", "川Q", "2263231");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511600", "广安市", "638000", "川X", "2264230");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511700", "达州市", "635000", "川S", "2263804");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("511900", "巴中市", "641000", "川", "22634");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("512000", "资阳市", "641300", "川M", "2264102");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("513400", "凉山", "641000", "川", "22634");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("610000", "陕西省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("610100", "西安市", "710000", "陕A", "21700");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("610200", "铜川市", "727000", "陕B", "2173909");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("610300", "宝鸡市", "721000", "陕C", "2173209");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("610400", "咸阳市", "712000", "陕D", "2173006");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("610500", "渭南市", "714000", "陕E", "2173409");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("610600", "延安市", "716000", "陕J", "2173709");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("610700", "汉中市", "723000", "陕F", "2173310");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("610900", "安康市", "725000", "陕G", "2173809");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("612500", "商洛市", "726000", "陕H", "2174009");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("612700", "榆林市", "719000", "陕K", "2173609");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("410000", "河南省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("410110", "郑州市", "450000", "豫A", "23224");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410200", "开封市", "475000", "豫B", "23215");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410300", "洛阳市", "471000", "豫C", "23203");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410400", "平顶山市", "467000", "豫D", "23208");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410500", "安阳市", "455000", "豫E", "23206");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410600", "鹤壁市", "456600", "豫F", "23220");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410700", "新乡市", "453700", "豫G", "23204");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410800", "焦作市", "454100", "豫H", "23207");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410881", "济源市", "454600", "豫U", "23213");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("410900", "濮阳市", "457000", "豫J", "23212");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411000", "许昌市", "461000", "豫K", "23214");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411100", "漯河市", "462000", "豫L", "23216");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411200", "三门峡市", "472000", "豫M", "23219");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411300", "南阳市", "473000", "豫R", "23211");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411400", "商丘市", "476000", "豫N", "23218");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411500", "信阳市", "464000", "豫S", "23223");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411600", "周口市", "466000", "豫P", "23222");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("411700", "驻马店市", "463000", "豫Q", "23217");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("130000", "河北省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("130100", "石家庄市", "050000", "冀A", "2242635");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("130200", "唐山市", "063000", "冀B", "22412");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("130300", "秦皇岛市", "066000", "冀C", "22411");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("130400", "邯郸市", "056000", "冀D", "22417");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+
+    var b = new City("130500", "邢台市", "054000", "冀E", "22418");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("130600", "保定市", "071000", "冀F", "22415");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("130700", "张家口市", "075000", "冀G", "22413");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("130800", "承德市", "053000", "冀T", "22419");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("130900", "沧州市", "061000", "冀S", "22416");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("131000", "廊坊市", "102800", "冀R", "22414");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("131100", "衡水市", "053000", "冀T", "22419");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("430000", "湖南省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("430100", "长沙市", "410100", "湘A", "22019");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430200", "株洲市", "412000", "湘B", "220020104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430300", "湘潭市", "411100", "湘C", "220030104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430400", "衡阳市", "421000", "湘D", "22008");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430500", "邵阳市", "422000", "湘E", "22009");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430600", "岳阳市", "414000", "湘F", "22004");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430700", "常德市", "415100", "湘J", "22005");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430800", "张家界市", "416600", "湘G", "220130104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("430900", "益阳市", "413000", "湘H", "220150104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("431000", "郴州市", "423000", "湘L", "220110104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("431100", "永州市", "425000", "湘M", "220100104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("431200", "怀化市", "418000", "湘N", "220070104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("431300", "娄底市", "417000", "湘K", "220060104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("433100", "湘西自治州", "416000", "湘U", "220140104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("530000", "云南省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("530100", "昆明市", "650000", "云A", "21638");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("530300", "曲靖市", "655000", "云D", "21604");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("530400", "玉溪市", "653100", "云F", "21606");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("530500", "保山市", "678000", "云M", "21633");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("530700", "丽江市", "674100", "云P", "21629");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("530800", "普洱市", "665100", "云J", "21627");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("532300", "楚雄自治州", "675000", "云E", "21605");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("532500", "红河自治州", "654400", "云G", "21621");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("532600", "文山壮族苗族自治州", "663000", "云H", "21615");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("532800", "西双版纳傣族自治州", "666000", "云K", "21630");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("532900", "大理白族自治州", "671000", "云L", "21625");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("533100", "德宏傣族景颇族自治州", "678000", "云N", "21632");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("530100", "分公司本部", "678000", "云", "21632");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("220000", "吉林省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("220100", "长春市", "130000", "吉A", "2082504");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("220200", "吉林市", "132000", "吉B", "20811");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("220300", "四平市", "136000", "吉C", "20812");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("220400", "辽源市", "136200", "吉D", "20821");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("220500", "通化市", "134000", "吉E", "20815");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("220600", "白山市", "134300", "吉F", "20816");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("220700", "松原市", "131000", "吉J", "20814");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("220800", "白城市", "137000", "吉G", "20820");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("222400", "延边市", "133000", "吉H", "20813");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("140000", "山西省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("140100", "太原市", "030000", "晋A", "23372");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140200", "大同市", "037000", "晋B", "23302");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140300", "阳泉市", "075800", "晋C", "23308");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140400", "长治市", "046000", "晋D", "23304");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140500", "晋城市", "048000", "晋E", "23307");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140600", "朔州市", "038500", "晋F", "23311");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140700", "晋中市", "030600", "晋K", "23303");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140800", "运城市", "044000", "晋M", "23306");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("140900", "忻州市", "034000", "晋H", "23310");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("141000", "临汾市", "041000", "晋L", "23305");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("141100", "吕梁市", "033000", "晋J", "23312");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("340000", "安徽省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("340100", "合肥市", "230000", "皖A", "22528");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("340200", "芜湖市", "241000", "皖B", "22502");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("340300", "蚌埠市", "233000", "皖C", "22503");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("340400", "淮南市", "232000", "皖D", "22504");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("340500", "马鞍山市", "243000", "皖E", "22505");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("340600", "淮北市", "235000", "皖F", "22506");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("340700", "铜陵市", "244000", "皖G", "22507");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341800", "宣城市", "242000", "皖P", "22516");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341000", "黄山市", "245000", "皖J", "22509");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341100", "滁州市", "239000", "皖M", "22512");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341200", "阜阳市", "236000", "皖K", "22510");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341300", "宿州市", "234000", "皖L", "22511");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341400", "巢湖市", "238000", "皖Q", "22514");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341500", "六安市", "237000", "皖N", "22513");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341600", "亳州市", "236000", "皖S", "22517");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("341700", "池州市", "242000", "皖R", "22515");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("340800", "安庆市", "246000", "皖H", "22508");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("520000", "贵州省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("520100", "贵阳市", "550000", "贵A", "22115");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("520200", "六盘水市", "553000", "贵B", "22105");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("520300", "遵义市", "563000", "贵C", "22104");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("520382", "仁怀市", "558000", "贵J", "22109");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("520400", "安顺市", "561000", "贵G", "22110");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("522200", "铜仁地区", "564300", "", "2210799");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("522300", "黔西南布依族苗族自治州", "564300", "", "2210799");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("522400", "毕节地区", "551700", "贵F", "22108");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("522600", "黔东南苗族侗族自治州", "564300", "", "2210799");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("522700", "黔南布依族苗族自治州", "558000", "贵J", "22109");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("360000", "江西省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("360100", "南昌市", "330000", "赣A", "22211");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360200", "景德镇市", "333000", "赣H", "22202");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360300", "萍乡市", "337000", "赣J", "22209");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360400", "九江市", "332000", "赣G", "22201");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360500", "新余市", "336500", "赣K", "22205");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360600", "鹰潭市", "335000", "赣L", "22204");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360700", "赣州市", "341000", "赣B", "22206");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360800", "吉安市", "343000", "赣D", "22208");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("360900", "宜春市", "336000", "赣C", "22210");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("361000", "抚州市", "344000", "赣F", "22207");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("361100", "上饶市", "334000", "赣E", "22203");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("630000", "青海省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("630100", "西宁市", "810000", "青A", "22705");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("632100", "海东市", "810000", "青B", "22711");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("632800", "海西蒙古族藏族自治州", "816000", "青H", "22712");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("230000", "黑龙江省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("230100", "哈尔滨市", "150000", "黑A", "21922");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230184", "五常市", "150000", "黑A", "21922");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230200", "齐齐哈尔市", "161000", "黑B", "21952");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230300", "鸡西市", "158100", "黑G", "21953");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230400", "鹤岗市", "154100", "黑H", "21960");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230500", "双鸭山市", "155100", "黑J", "21959");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230600", "大庆市", "153000", "黑", "21957");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230700", "伊春市", "153000", "黑F", "21957");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230800", "佳木斯市", "150000", "黑A", "21922");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("230900", "七台河市", "150000", "黑A", "21922");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("231000", "牡丹江市", "163000", "黑E", "21951");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("231081", "绥芬河市", "163000", "黑E", "21951");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("231100", "黑河市", "164300", "黑N", "21958");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("231200", "绥化市", "152000", "黑M", "21956");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("450000", "广西壮族自治区");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("450100", "南宁市", "530000", "桂A", "21401");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450200", "柳州市", "545000", "桂B", "21409");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450300", "桂林市", "541000", "桂C", "21403");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450400", "梧州市", "543000", "桂D", "21417");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450500", "北海市", "536000", "桂E", "21414");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450600", "防城港市", "535700", "桂P", "21423");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450700", "钦州市", "535000", "桂N", "21422");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450800", "贵港市", "537100", "桂R", "21413");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("450900", "玉林市", "537000", "桂K", "21412");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("451000", "百色市", "533000", "桂L", "21415");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("451100", "贺州市", "542000", "桂J", "21424");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("451200", "河池市", "547000", "桂M", "2141601");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("150000", "内蒙古自治区");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("150100", "呼和浩特市", "010000", "蒙A", "23125");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("150200", "包头市", "014000", "蒙B", "23102");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("150300", "乌海市", "016000", "蒙C", "23127");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("150400", "赤峰市", "024000", "蒙D", "23119");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("150500", "通辽市", "024000", "蒙D", "23119");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("150600", "鄂尔多斯市", "017000", "蒙K", "23120");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("150700", "呼伦贝尔市", "021000", "", "23118");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("150800", "巴彦淖尔市", "015000", "蒙L", "23128");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("152500", "锡林郭勒盟", "011000", "", "23131");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("650000", "新疆维吾尔自治区");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("650100", "乌鲁木齐市", "830000", "新A", "22304");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("650200", "克拉玛依市", "834000", "新J", "22324");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("652200", "哈密地区", "839000", "新L", "22332");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("652300", "昌吉回族自治州", "831100", "新B", "22301");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("652800", "巴音郭楞蒙古自治州", "841000", "新M", "22306");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("652900", "阿克苏地区", "843000", "新N", "22325");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("654000", "伊犁哈萨克自治州", "835000", "新F", "22302");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("659001", "石河子市", "832000", "新C", "22335");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("640000", "宁夏回族自治区");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("640100", "银川市", "750000", "宁A", "22818");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("640200", "石嘴山市", "753000", "宁B", "2280105");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("640300", "吴忠市", "751100", "宁C", "2280307");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("640400", "固原市", "756000", "宁D", "2281303");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("640500", "中卫市", "751700", "宁E", "2281204");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("350000", "福建省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("350100", "福州市", "350000", "闽A", "21319");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350181", "福清市", "350300", "闽A", "21317");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350200", "厦门市", "361000", "闽D", "2302116");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350300", "莆田市", "351100", "闽B", "21316");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350400", "三明市", "365000", "闽G", "21311");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350500", "泉州市", "362000", "闽C", "21310");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350582", "晋江市", "362200", "闽C", "21322");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350600", "漳州市", "363000", "闽E", "21312");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350700", "南平市", "353000", "闽H", "21313");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350800", "龙岩市", "364000", "闽F", "21315");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("350900", "宁德市", "352100", "闽J", "21314");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("460000", "海南省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("460100", "海口市", "570000", "琼A", "21560");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("460200", "三亚市", "572000", "琼B", "21510");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var a = new Province("620000", "甘肃省");
+    ProvinceHolder[a.c] = a;
+    ProvinceHolder.provinces.push(a);
+    var b = new City("620100", "兰州市", "730000", "甘A", "23480");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("620400", "白银市", "730900", "甘D", "23403");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("620500", "天水市", "741000", "甘E", "23405");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("620600", "武威市", "733000", "甘H", "23407");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("620700", "张掖市", "734000", "甘G", "23409");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("620800", "平凉市", "744000", "甘L", "23404");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("620900", "酒泉市", "735000", "甘F", "23402");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("621000", "庆阳市", "745100", "甘M", "23406");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("621100", "定西市", "743000", "甘", "23412");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a;
+    var b = new City("621200", "陇南市", "742000", "甘", "23410");
+    CityHolder[b.c] = b;
+    a.cs.push(b);
+    b.p = a
+}
+function initParam() {
+    s_PROVINCECODE = U.GI("provinceCode");
+    s_CITYCODE = U.GI("cityCode");
+    s_LICENSENO = U.GI("license");
+    s_MOBILE = U.GI("mobile");
+    s_EMAIL = U.GI("email");
+    s_Error = U.GI("error" + plid);
+    s_ErrorBG = U.GI("bg_of_error" + plid);
+    s_radio1 = U.GI("radio-1");
+    s_radio2 = U.GI("radio-2");
+    s_radio3 = U.GI("radio-3");
+    licenseNo_hidden = U.GI("licenseNo_hidden")
+}
+function initEvent() {
+    s_CITYCODE.onchange = function() {
+        selectCheck(this);
+        var a = this.selectedIndex;
+        if (this.value == VALUES[this.id].value) {
+            s_LICENSENO.value = VALUES[s_LICENSENO.id].value;
+            s_LICENSENO.className = VALUES[s_LICENSENO.id].value == s_LICENSENO.value ? s_LICENSENO.id + "_def": s_LICENSENO.id + "_nor"
+        } else {
+            s_LICENSENO.value = this.options[a].title;
+            s_LICENSENO.className = VALUES[s_LICENSENO.id].value == s_LICENSENO.value ? s_LICENSENO.id + "_def": s_LICENSENO.id + "_nor"
+        }
+    };
+    s_PROVINCECODE.onchange = function() {
+        selectCheck(this);
+        s_LICENSENO.value = VALUES[s_LICENSENO.id].value;
+        s_LICENSENO.className = VALUES[s_LICENSENO.id].value == s_LICENSENO.value ? s_LICENSENO.id + "_def": s_LICENSENO.id + "_nor";
+        var a = this.selectedIndex;
+        if (this.value == VALUES[this.id].value) {
+            initCitySelect(s_CITYCODE, null);
+            selectCheck(s_CITYCODE)
+        } else {
+            var b = ProvinceHolder.provinces[a - 1]["cs"];
+            initCitySelect(s_CITYCODE, b);
+            selectCheck(s_CITYCODE)
+        }
+    };
+    s_radio1.onclick = function() {
+        s_LICENSENO.disabled = true;
+        s_LICENSENO.style.backgroundColor = "gray";
+        noValidate.push(s_LICENSENO);
+        validator.hideErrorTipMessage()
+    };
+    s_radio2.onclick = function() {
+        s_LICENSENO.disabled = false;
+        s_LICENSENO.style.backgroundColor = "";
+        noValidate = [];
+        validator.hideErrorTipMessage()
+    };
+    s_radio3.onclick = function() {
+        s_LICENSENO.disabled = false;
+        s_LICENSENO.style.backgroundColor = "";
+        noValidate = [];
+        validator.hideErrorTipMessage()
+    }
+}
+function initValue() {
+    s_PROVINCECODE.selectedIndex = 0;
+    s_PROVINCECODE.className = "provinceCode_def";
+    s_CITYCODE.selectedIndex = 0;
+    s_CITYCODE.className = "cityCode_def";
+    s_LICENSENO.value = VALUES.license.value;
+    s_LICENSENO.className = "license_def";
+    s_MOBILE.value = VALUES.mobile.value;
+    s_MOBILE.className = "mobile_def";
+    s_EMAIL.value = VALUES.email.value;
+    s_EMAIL.className = "email_def";
+    s_LICENSENO.disabled = false;
+    s_LICENSENO.style.backgroundColor = "";
+    licenseNo_hidden.value = "";
+    s_radio1.checked = false;
+    s_radio2.checked = false;
+    s_radio3.checked = false
+}
+function init() {
+    initParam();
+    initPrSelect(s_PROVINCECODE, ProvinceHolder.provinces);
+    initCitySelect(s_CITYCODE, null);
+    initEvent();
+    validator.setDefault({
+        errorContainer: s_Error,
+        errorBG: s_ErrorBG
+    });
+    validator.add({
+        elm: s_PROVINCECODE,
+        rule: function() {
+            if (s_PROVINCECODE.options[s_PROVINCECODE.selectedIndex].value != VALUES.provinceCode.value) {
+                return true
+            } else {
+                U.baiduAd(ADLOG[1]);
+                return false
+            }
+        },
+        msg: "请选择省"
+    });
+    validator.add({
+        elm: s_CITYCODE,
+        rule: function() {
+            if (s_CITYCODE.options[s_CITYCODE.selectedIndex].value != VALUES.cityCode.value) {
+                return true
+            } else {
+                U.baiduAd(ADLOG[2]);
+                return false
+            }
+        },
+        msg: "请选择市"
+    });
+    validator.add({
+        elm: s_radio3,
+        rule: function() {
+            if (s_radio1.checked || s_radio2.checked || s_radio3.checked) {
+                return true
+            } else {
+                U.baiduAd(ADLOG[3]);
+                return false
+            }
+        },
+        msg: "请选择客户类型"
+    });
+    validator.add({
+        elm: s_LICENSENO,
+        rule: function() {
+            var d = U.TRIM(s_LICENSENO.value);
+            var c = new RegExp(/^([\u4e00-\u9fa5]){1}([a-zA-Z])(-)?([a-z0-9A-Z]){5}$/);
+            if (c.test(d) && !U.contains(licenseNo_BLOCKLIST, d)) {
+                licenseNo_hidden.value = d;
+                return true
+            } else {
+                U.baiduAd(ADLOG[4]);
+                return false
+            }
+        },
+        msg: "请填有效车牌号"
+    });
+    validator.add({
+        elm: s_LICENSENO,
+        rule: function() {
+            var f = U.TRIM(s_LICENSENO.value).toUpperCase();
+            var e = ["WJ", "军", "海", "空", "北", "沈", "兰", "济", "南", "广", "成"];
+            for (var d = 0, c = e.length; d < c; ++d) {
+                if (f.indexOf(e[d]) == 0) {
+                    U.baiduAd(ADLOG[4]);
+                    return false
+                }
+            }
+            if (f.indexOf("警") != -1) {
+                U.baiduAd(ADLOG[4]);
+                return false
+            } else {
+                return true
+            }
+        },
+        msg: "您的车辆不能在网上投保"
+    });
+    validator.add({
+        elm: s_MOBILE,
+        rule: function() {
+            var e = U.TRIM(s_MOBILE.value);
+            if (e.charAt(0) == "1") {
+                var d = new RegExp("^13\\d{9}$");
+                var c = new RegExp("^14[57]\\d{8}$");
+                var g = new RegExp("^15[0-35-9]\\d{8}$");
+                var f = new RegExp("^18[05-9]\\d{8}$");
+                if ((d.test(e) || c.test(e) || g.test(e) || f.test(e)) && !U.contains(mobile_BLOCKLIST, e)) {
+                    return true
+                } else {
+                    U.baiduAd(ADLOG[5]);
+                    return false
+                }
+            } else {
+                U.baiduAd(ADLOG[5]);
+                return false
+            }
+        },
+        msg: "请填有效手机号"
+    });
+    validator.add({
+        elm: s_EMAIL,
+        rule: function() {
+            var d = U.TRIM(s_EMAIL.value);
+            if (d == VALUES.email.value) {
+                document.getElementById('email').value = "";
+                return true
+            }
+            var c = /^[a-z0-9]([a-z0-9]*[-_\.]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i;
+            if (c.test(d) && !U.contains(email_BLOCKLIST, d)) {
+                return true
+            } else {
+                U.baiduAd(ADLOG[6]);
+                return false
+            }
+        },
+        msg: "请填有效邮箱"
+    });
+    sForm = U.GI("form" + plid);
+    function a() {
+        sForm.reset();
+        initValue()
+    }
+    function b() {
+        var g = new String(window.location);
+        var d = g.indexOf("?par=");
+        var f = g.slice(d + 5);
+        var c = new Image(),
+        e = "img_id_" + new Date().getTime() + "_" + Math.random();
+        c.onload = c.onerror = c.onabort = function() {
+            window[e] = null
+        };
+        window[e] = c;
+        c.src = f
+    }
+    sForm.onsubmit = function() {
+        var c;
+        if (validator.valid()) {
+            if (U.ie() && CHARSET != "" && document.charset != CHARSET) {
+                c = document.charset;
+                document.charset = CHARSET;
+                CHARSET = c
+            }
+            setTimeout(b, 800);
+            U.baiduAd(ADLOG[0]);
+            this.submit();
+            setTimeout(a, 50);
+            if (U.ie() && CHARSET != "" && document.charset != CHARSET) {
+                c = document.charset;
+                document.charset = CHARSET;
+                CHARSET = c
+            }
+        } else {
+            licenseNo_hidden.value = ""
+        }
+        return false
+    }
+}
+initProvinceCity();
+init();
+onload = function() {
+    initValue();
+    initInputSelectEvent()
+};
+</script><style type="text/css">
+	#wrapper{position:relative;width:10px;height:195px;background:url('984bg2.jpg') no-repeat white;padding:2px 455px 0px 529px;font-size:12px;color:#333333;}
+	.soSelect { background-color: #fff; border: solid 1px #7F9DB9; position:relative; height: 20px; margin:0px; cursor: pointer; zoom:1;text-align:left;}
+	.soSelect .options {overflow-y:auto; overflow-x:hidden; background-color: #fff; border: solid 1px #7f9db9; left: -1px; position: absolute; top: 20px; z-index: 9999; margin: 0; padding: 0; list-style:none; }
+	.soSelect .options li a { color: #000; display: block; height: 18px; line-height: 18px; padding-left: 5px; text-decoration: none;}
+	.soSelect .options li a:hover { background: none repeat scroll 0 0 #36c; color: #fff; }
+	.soSelect .option_current { float: left; height: 20px; line-height: 20px; overflow: hidden; padding-left: 5px; white-space: nowrap;  z-index:20;}
+	.soSelect .option_arrow { float: right; height: 20px; overflow: hidden; width: 17px; }
+	.soSelect .option_arrow a { border: solid 1px #fff; cursor: default; display: block; height: 18px; text-align: center; white-space: nowrap; }
+	.soSelect .option_arrow a:hover .arrow { background: #F4F4F4 url("http://eiv.baidu.com/mapm2/test/pingan/100824_xedk_01/arrow.png") no-repeat scroll 0 -18px; cursor: pointer; }
+	.soSelect .option_arrow .arrow { background: transparent url("http://eiv.baidu.com/mapm2/test/pingan/100824_xedk_01/arrow.png") no-repeat scroll 0 0; display: block; height: 18px; outline:none; }
+	.formPage{width:446px;}
+	.successPage{}
+	table.formtab{margin:0px; border-spacing:0px; border-collapse:collapse; width:100%;}
+	table.formtab td{color: #666666;font-size:12px; padding:0px;height:32px; line-height:32px; vertical-align:middle;}
+	table.formtab .td-right{padding-left:10px;}
+	table.formtab .td-radio{height:10px;line-height:10px;}
+	select{border: 1px solid #8A8A8A;padding: 1px;margin: 0px; vertical-align:middle;}
+	input{border: 1px solid #8A8A8A;padding: 2px 1px;margin: 0px; vertical-align:middle;}
+	table.formtab .td-radio input{border: 0px solid #8A8A8A;padding: 0px;margin: 0px; vertical-align:middle;}
+    select.provinceCode_nor{color:black;}
+    select.provinceCode_def{color:black;}
+    select.cityCode_nor{color:black;}
+    select.cityCode_def{color:black;}
+    input.license_nor{color:black;}
+    input.license_def{color:black;}
+    input.mobile_nor{color:black;}
+    input.mobile_def{color:black;}
+    input.email_nor{color:black;}
+    input.email_def{color:black;}
+    .submitbtn{background:url() no-repeat; height:32px; width:104px; border:0px; padding:0px; cursor:pointer; margin:0px;}
+    .submitbtnHover{background:url() no-repeat; height:32px; width:104px; border:0px; padding:0px; cursor:pointer; margin:0px;}
+    .submitbtnActive{background:url() no-repeat; height:32px; width:104px; border:0px; padding:0px; cursor:pointer; margin:0px;}
+    .submitBtnCtner{height:32px; width:104px; position:absolute; top:44px; left:880px;}
+    .ec_inputerr{background:#fee994;color:#000000;}
+	.ec_inputerr{background:#fee994;color:#000000;}
+</style>
+<div id="wrapper">
+<div id="formPage" class="formPage"><iframe name="formSubmit" style="display:none"></iframe><form id="formtaibao110629" style="margin:0px; padding:0px;" target="_blank" method="post" accept-charset="utf-8" action="http://www.cpic.com.cn/cpicweb/view/customer/personal/vehicle/SimpleChinaFastCalculationViewNew.jsp?utm_source=baidu&amp;utm_medium=cpc&amp;utm_term=baojia"><input name="source" value="baiduSource" type="hidden"><input id="licenseNo_hidden" name="licenseNo" value="" type="hidden"><table class="formtab" border="0" cellpadding="0" cellspacing="0" align="center"><colgroup><col width="60" align="left"><col width="150" align="left"></colgroup><tbody><tr><td align="left"><select class="provinceCode_def" id="provinceCode" name="provinceCode" style="font-size:14px; width:104px;"><option selected="selected" title="所在省*" value="null">所在省*</option><option title="北京市" value="110000">北京市</option><option title="天津市" value="120000">天津市</option><option title="上海市" value="310000">上海市</option><option title="重庆市" value="500000">重庆市</option><option title="深圳市" value="830000">深圳市</option><option title="广东省" value="440000">广东省</option><option title="江苏省" value="320000">江苏省</option><option title="浙江省" value="330000">浙江省</option><option title="山东省" value="370000">山东省</option><option title="湖北省" value="420000">湖北省</option><option title="辽宁省" value="210000">辽宁省</option><option title="四川省" value="510000">四川省</option><option title="陕西省" value="610000">陕西省</option><option title="河南省" value="410000">河南省</option><option title="河北省" value="130000">河北省</option><option title="湖南省" value="430000">湖南省</option><option title="云南省" value="530000">云南省</option><option title="吉林省" value="220000">吉林省</option><option title="山西省" value="140000">山西省</option><option title="安徽省" value="340000">安徽省</option><option title="贵州省" value="520000">贵州省</option><option title="江西省" value="360000">江西省</option><option title="青海省" value="630000">青海省</option><option title="黑龙江省" value="230000">黑龙江省</option><option title="广西壮族自治区" value="450000">广西壮族自治区</option><option title="内蒙古自治区" value="150000">内蒙古自治区</option><option title="新疆维吾尔自治区" value="650000">新疆维吾尔自治区</option><option title="宁夏回族自治区" value="640000">宁夏回族自治区</option><option title="福建省" value="350000">福建省</option><option title="海南省" value="460000">海南省</option><option title="甘肃省" value="620000">甘肃省</option></select></td><td class="td-right" align="left"><select class="cityCode_def" id="cityCode" name="cityCode" style="font-size:14px; width:104px;"><option selected="selected" title="所在市*" value="null">所在市*</option></select></td><td align="right"><input id="license" value="车牌号码*" class="license_def" style="font-size: 14px; width: 100px;" autocomplete="off" maxlength="7" type="text"></td><td class="td-right" align="left"><input id="mobile" name="mobile" value="手机号*" class="mobile_def" style="font-size:14px; width:100px;" autocomplete="off" maxlength="11" type="text"></td></tr><tr><td class="td-radio" align="left"><input id="radio-1" name="clientType" value="100" type="radio">新车未上牌</td><td class="td-radio td-right" align="left"><input name="clientType" id="radio-2" value="010" type="radio">太保老客户</td><td align="left"><input id="email" name="email" value="您的邮箱" class="email_def" style="font-size:14px; width:100px;" autocomplete="off" type="text"></td></tr><tr><td colspan="2" class="td-radio" align="left"><input name="clientType" id="radio-3" value="001" type="radio">上年其他保险公司承保</td></tr></tbody></table><div id="submitBtnCtner" class="submitBtnCtner"><input class="submitbtn" id="submitBtn" value="" type="submit"></div><div id="errortaibao110629" style="background: url(&quot;http://eiv.baidu.com/mapm2/test/pingan/100824_xedk_01/err.gif&quot;) no-repeat scroll 3px 4px rgb(255, 242, 242); border: 1px solid rgb(255, 191, 191); font-size: 12px; line-height: 16px; margin: 0px; padding: 2px 0px 2px 20px; position: absolute; left: 100px; visibility: hidden; z-index: 200; width:86px;"></div><iframe id="bg_of_errortaibao110629" src="javascript:false;" style="position:absolute; top:0px; left:0px; visibility: hidden;" frameborder="0" scrolling="no"></iframe></form></div><div id="successPage" class="successPage" style="display:none;">新内容</div>
+</div>
+
+
+</body></html>
